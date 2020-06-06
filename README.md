@@ -3,8 +3,11 @@
 
 ## 使い方
 ### 初期設定
-code-serverにログインするときのパスワードとvscodeで開きたいプロジェクトのパスを.envに記述
 `cp .env.example .env`
+
+以下を設定
+- code-serverにログインするときのパスワード
+- vscodeで開きたいプロジェクトのpathを.envに記述
 
 ### code-serverの立ち上げ
 `docker-compose up -d`
