@@ -1,0 +1,38 @@
+version: "3.7"
+
+services:
+  ngrok:
+    image: wernight/ngrok
+    container_name: coder-ngrok
+    ports:
+      - "0.0.0.0:80:4040"
+    depends_on:
+      - server
+    environment:
+      NGROK_PORT: server:8080
+
+  server:
+    container_name: coder-server
+    build:
+      dockerfile: ./containers/code-server/Dockerfile
+      context: ./
+    env_file: ./.env
+    environment:
+      DOCKER_HOST: tcp://dind:2375
+    depends_on:
+      - dind
+    ports:
+      - "8080:8080"
+    volumes:
+      - ${PROJECTS_PATH}:/home/coder/projects
+      - code-server:/home/coder/.local/share/code-server
+
+  dind:
+    container_name: coder-dind
+    image: docker:19.03-dind
+    privileged: true
+    environment:
+      DOCKER_TLS_CERTDIR: ""
+
+volumes:
+  code-server:
