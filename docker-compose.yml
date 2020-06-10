@@ -22,6 +22,7 @@ services:
     volumes:
       - /var/run/docker.sock:/var/run/docker.sock
       - ${PROJECTS_PATH}:${PROJECTS_PATH}
+      - ${HOME}/.ssh":/home/coder/.ssh
       - ${HOME}/.vscode/extensions:/home/coder/.local/share/code-server/extensions
       - code-server:/home/coder/.local/share/code-server
 
