@@ -18,6 +18,9 @@ RUN chmod +x /usr/local/bin/docker-compose && ln -s /usr/local/bin/docker-compos
 COPY docker-entrypoint.sh /tmp
 RUN chown coder:coder /tmp/docker-entrypoint.sh
 
+COPY extension /init/
+RUN find /init -name *.sh | xargs sh
+
 USER coder
 RUN mkdir -p ~/.local/share/code-server
 
