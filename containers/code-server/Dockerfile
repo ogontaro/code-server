@@ -7,7 +7,7 @@ ENV LANG="C.UTF-8" \
 RUN cp /usr/share/zoneinfo/Asia/Tokyo /etc/localtime
 
 RUN apt update && \
-    apt install -y --no-install-recommends build-essential wget curl apt-transport-https ca-certificates curl gnupg-agent software-properties-common gnupg && \
+    apt install -y --no-install-recommends build-essential wget curl apt-transport-https ca-certificates gnupg-agent software-properties-common gnupg && \
     apt clean && \
     rm -r /var/lib/apt/lists/*
 RUN curl -fsSL https://download.docker.com/linux/debian/gpg | sudo apt-key add -  && add-apt-repository "deb [arch=amd64] https://download.docker.com/linux/debian $(lsb_release -cs) stable"
